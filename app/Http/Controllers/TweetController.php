@@ -106,7 +106,14 @@ class TweetController extends Controller
     }
     public function popular(Request $request)
     {
-      $tweets = Tweet::withCount('liked')->orderBy('liked_count', 'desc')->paginate();
+      $query = Tweet::withCount('liked')->orderBy('liked_count', 'desc');
+
+      if ($request->filled('keyword')) {
+          $keyword = $request->keyword;
+         $query->where('tweet', 'like', '%' . $keyword . '%');
+      }
+
+      $tweets = $query->paginate();
       return view('tweets.popular', compact('tweets'));
     }
 }

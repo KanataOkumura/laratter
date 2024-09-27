@@ -1,7 +1,7 @@
 <x-app-layout>
   <x-slot name="header">
     <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-      {{ __('Tweet検索') }}
+      {{ __('人気なTweet') }}
     </h2>
   </x-slot>
 
@@ -9,7 +9,15 @@
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
       <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
         <div class="p-6 text-gray-900 dark:text-gray-100">
-
+         <!-- 検索フォーム -->
+          <form action="{{ route('tweets.popular') }}" method="GET" class="mb-6">
+            <div class="flex items-center">
+              <input type="text" name="keyword" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 dark:bg-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Search for tweets..." value="{{ request('keyword') }}">
+              <button type="submit" class="ml-4 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-700">
+                Search
+              </button>
+            </div>
+          </form>
         
 
           <!-- 検索結果表示 -->
