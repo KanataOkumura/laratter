@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Tweet;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class TweetController extends Controller
 {
@@ -102,5 +103,10 @@ class TweetController extends Controller
         ->paginate(10);
 
       return view('tweets.search', compact('tweets'));
+    }
+    public function popular(Request $request)
+    {
+      $tweets = Tweet::withCount('liked')->orderBy('liked_count', 'desc')->paginate();
+      return view('tweets.popular', compact('tweets'));
     }
 }
