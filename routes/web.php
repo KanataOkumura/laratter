@@ -21,6 +21,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/profile/{user}', [ProfileController::class, 'show'])->name('profile.show');
     Route::get('/tweets/search', [TweetController::class, 'search'])->name('tweets.search');
+    Route::get('/tweets/popular', [TweetController::class, 'popular'])->name('tweets.popular');
     Route::resource('tweets', TweetController::class);
     Route::post('/tweets/{tweet}/like', [TweetLikeController::class, 'store'])->name('tweets.like');
     Route::post('/follow/{user}', [FollowController::class, 'store'])->name('follow.store');
